@@ -1,0 +1,42 @@
+		.slider {
+			margin:0 auto;
+			width:810px;
+			height:200px;
+			position:relative;
+		}		
+		#pxslides-container {
+			margin:0 auto;
+			width:730px;
+			height:200px;
+			overflow:hidden; 
+			position:relative;
+		}
+		#pxslides-container .pxslide {
+			margin:0 auto;
+			float: left;
+			width:730px; 
+			height:200px;
+		}
+
+
+		/**
+		* Slideshow controls style rules.
+		*/
+		.pxcontrol {
+			display:block;
+			width:39px;
+			height:200px;
+			text-indent:-10000px;
+			position:absolute;
+			cursor: pointer;
+		}
+		#pxleftControl {
+			top:0;
+			left:0;
+			background:transparent url(images/control_left.jpg) no-repeat 0 0;
+		}
+		#pxrightControl {
+			top:0;
+			right:0;
+			background:transparent url(images/control_right.jpg) no-repeat 0 0;
+		}
