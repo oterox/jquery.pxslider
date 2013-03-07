@@ -78,25 +78,20 @@
 		// setNavigation: Hides and shows controls depending on currentPosition
 		function setNavigation(position){
 
+			$('#pxleftControl').removeClass('disabled');
+			$('#pxrightControl').removeClass('disabled');
+
 			// Hide left arrow if position is first slide
-			if(position==0){ 
+			if(position == 0){ 
 
-				$('#pxleftControl').hide(); 
-
-			}else{ 
-
-				$('#pxleftControl').show(); 
+				$('#pxleftControl').addClass('disabled');
 
 			}
 			
 			// Hide right arrow if position is last slide
-			if(position < numberOfSlides-1){
+			if(position == numberOfSlides-1){
 
-				$('#pxrightControl').show();
-
-			}else{ 
-
-				$('#pxrightControl').hide(); 
+				$('#pxrightControl').addClass('disabled'); 
 
 			}
 		}

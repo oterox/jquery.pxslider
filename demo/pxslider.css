@@ -20,23 +20,23 @@
 
 
 		/**
-		* Slideshow controls style rules.
+		* Navigation
 		*/
 		.pxcontrol {
 			display:block;
-			width:39px;
-			height:200px;
-			text-indent:-10000px;
-			position:absolute;
-			cursor: pointer;
+			position:absolute;		
 		}
 		#pxleftControl {
-			top:0;
+			top:50px;
 			left:0;
-			background:transparent url(images/control_left.jpg) no-repeat 0 0;
 		}
 		#pxrightControl {
-			top:0;
+			top:50px;
 			right:0;
-			background:transparent url(images/control_right.jpg) no-repeat 0 0;
+		}
+		#pxleftControl.disabled, 
+		#pxrightControl.disabled { 
+			cursor: default;
+			color: #CCC;
+			text-decoration: none;
 		}
