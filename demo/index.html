@@ -29,7 +29,15 @@
 <script type="text/javascript">
 $(document).ready(function(){
     
-	$('#pxslides-container').pxslider();
+	$('#pxslides-container').pxslider({
+		slideWidth: 730,
+		onSlideBefore: function(){
+						alert("starting animation");
+					},
+		onSlideAfter: function(){
+						alert("Animation finished");
+					}
+	});
 
 });
 </script>

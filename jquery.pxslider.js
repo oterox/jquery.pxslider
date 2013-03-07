@@ -2,12 +2,12 @@
 	$.fn.pxslider = function( option ) {
 		
 		var defaults = {  
-
-			slideWidth: 730				// width of each .slide div
-
+			slideWidth: 730,				
+			onSlideBefore: function() {},
+			onSlideAfter: function() {}
 		};  
 
-		var options = $.extend(defaults, options),
+		var options = $.extend(defaults, option),
 
 			currentPosition = 0,			//current position of the slideshow
 
@@ -59,14 +59,16 @@
 		function gotoslide(position){
 
 			if( position >= 0 && position < numberOfSlides){
-
+				
+				options.onSlideBefore();
+				
 				currentPosition = position;
 
 				$('#slideInner').animate({
 
 					'marginLeft' : options.slideWidth*(-currentPosition)
 
-				});
+				}, 500, options.onSlideAfter );
 
 				setNavigation(currentPosition);
 
