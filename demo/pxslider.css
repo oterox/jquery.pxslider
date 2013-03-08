@@ -40,3 +40,9 @@
 			color: #CCC;
 			text-decoration: none;
 		}
+
+		/**
+		* Pager 
+		*/
+		.pxthumb-box a { text-decoration: none; color: #000000; font-size: 14px; }
+		.pxthumb-box a.current { background: #353535; font-size: 18px; color: #FAFAFA; }

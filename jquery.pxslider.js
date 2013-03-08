@@ -22,8 +22,25 @@
 
 		$('.slider')
 			.prepend('<a href="#" class="pxcontrol" id="pxleftControl">left</a>')
-			.append('<a href="#" class="pxcontrol" id="pxrightControl">right</a>');
+			.append('<a href="#" class="pxcontrol" id="pxrightControl">right</a>')
+			.append('<div id="pxthumbs"></div>');
  
+		slides.each(function(){
+			
+			var i = $(this).index();
+			
+			$('#pxthumbs').append('<div class="pxthumb-box" data-id="'+ i +'"><a href="#" data-id="'+i+'">'+i+'</a></div>');
+
+		});
+
+		$('.pxthumb-box a').click( function(e){
+			
+			gotoslide( $(this).data('id') );
+
+			e.preventDefault();
+
+		});
+
 		setNavigation(currentPosition);
 
 		$('.pxcontrol').bind('click', function(){
@@ -79,6 +96,7 @@
 		function setNavigation(position){
 
 			$('#pxleftControl').removeClass('disabled');
+			
 			$('#pxrightControl').removeClass('disabled');
 
 			// Hide left arrow if position is first slide
@@ -94,6 +112,11 @@
 				$('#pxrightControl').addClass('disabled'); 
 
 			}
+
+			// pager
+			$('.pxthumb-box a').removeClass('current');
+
+			$('.pxthumb-box a[data-id='+position+']').addClass('current');
 		}
 
 	}
