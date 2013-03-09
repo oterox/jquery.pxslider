@@ -1,21 +1,21 @@
 		.slider {
 			margin:0 auto;
-			width:810px;
-			height:200px;
+			width:1000px;
+			height:300px;
 			position:relative;
 		}		
 		#pxslides-container {
 			margin:0 auto;
-			width:730px;
-			height:200px;
+			width:960px;
+			height:300px;
 			overflow:hidden; 
 			position:relative;
 		}
 		#pxslides-container .pxslide {
 			margin:0 auto;
 			float: left;
-			width:730px; 
-			height:200px;
+			width:960px; 
+			height:300px;
 		}
 
 
