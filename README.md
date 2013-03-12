@@ -9,6 +9,13 @@ For complete documentation visit:
 
 Written by: Javier Otero 
 
+##Main Features
+- Lightweight
+- Optional pagination
+- Circular
+- Auto-scroll
+- Events: onSlideBefore, onSlideAfter
+- Public methods: goToSlide
 
 ##Installation
 
@@ -115,11 +122,18 @@ default: true
 options: boolean
 ```
 
-**auto (to-do)**  
+**auto**  
 Enables the slide auto scroll
 ```
 default: false  
 options: boolean
+```
+
+**autoTimer**  
+Timer for the autoscroll
+```
+default: 6000  
+options: integer
 ```
 
 **effect (to-do)**  
