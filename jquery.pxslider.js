@@ -11,7 +11,7 @@
 			pagination: true,
 			auto: false,  //TO-DO
 			effect: 'scroll', //TO-DO		
-			circular: false, //TO-DO		
+			circular: false, 
 			prevButton: 'px-left', 		
 			nextButton: 'px-right', 		
 			pager: 'px-thumbs', //TO-DO		

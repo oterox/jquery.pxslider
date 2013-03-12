@@ -129,6 +129,27 @@ default: scroll
 options: string
 ```
 
+**circular**  
+Makes the carousel infinite
+```
+default: false  
+options: boolean
+```
+
+**prevButton**  
+ID for the prev button
+```
+default: 'px-left'  
+options: string
+```
+
+**nextButton**  
+ID for the next button
+```
+default: 'px-right'  
+options: string
+```
+
 **onSlideBefore**  
 Event that fires Before the animation starts
 ```javascript
