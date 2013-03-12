@@ -12,29 +12,107 @@
 </head>
 
 <body>
+<a href="" class="ext">go to 2</a>
+	<p>Convert a DIV with only images into a slider</p>
+	<div id="home-slider">
+		<div class="pxslide"><img src="images/pxslide1.jpg" /></div>
+		<div class="pxslide"><img src="images/pxslide2.jpg" /></div>	
+		<div class="pxslide"><img src="images/pxslide3.jpg" /></div>
+		<div class="pxslide"><img src="images/pxslide4.jpg" /></div>
+		<div class="pxslide"><img src="images/pxslide5.jpg" /></div>
+	</div>
+	<p class="debug1">debug:<span></span></p>
+	<p class="debug2">debug:<span></span></p>
+    <a href="" class="ext1">go to first slide</a><br>
+    <a href="" class="ext2">go to slide 2</a><br>
+    <a href="" class="ext3">go to last slide</a><br>
+    <a href="" class="ext4">total</a><br>
+    <a href="" class="ext5">current</a><br>
 
-<div class="slider">
-	
-	<div id="pxslides-container">
+	<p>Convert a UL into a slider</p>
+	<ul id="home-slider-ul">
 		<div class="pxslide"><img src="images/pxslide1.jpg" /></div>
 		<div class="pxslide"><img src="images/pxslide2.jpg" /></div>
 		<div class="pxslide"><h2>THis is text content</h2></div>
 		<div class="pxslide"><img src="images/pxslide3.jpg" /></div>
 		<div class="pxslide"><img src="images/pxslide4.jpg" /></div>
 		<div class="pxslide"><img src="images/pxslide5.jpg" /></div>
+	</ul>
+
+	<p>slider from images only</p>
+
+	<div id="home-slider-img">
+		<img src="images/pxslide1.jpg" />
+		<img src="images/pxslide2.jpg" />
+		<img src="images/pxslide3.jpg" />
+		<img src="images/pxslide4.jpg" />
+		<img src="images/pxslide5.jpg" />
 	</div>
 
-</div>
+	<pre>
+	&lt;div id="home-slider-img"&gt;
+		&lt;img src="images/pxslide1.jpg" /&gt;
+		&lt;img src="images/pxslide2.jpg" /&gt;
+		&lt;img src="images/pxslide3.jpg" /&gt;
+	&lt;/div&gt;
+	</pre>
 
 <script type="text/javascript">
 $(document).ready(function(){
     
-	$('#pxslides-container').pxslider({
-		slideWidth: 960
+
+	$('#home-slider').pxSlider({
+	    'slideWidth': 960,
+		onSlideBefore: function( currentIndex ){
+			$('p.debug1 span').html('starting animation... index before animation: ' + currentIndex );
+		},
+		onSlideAfter: function( currentIndex ){
+			$('p.debug2 span').html('animation finished... index after animation: ' + currentIndex );
+		}
+	});
+
+	$('#home-slider-ul').pxSlider({
+		slideWidth: 660,
+		pagination: false
+		//speed: 600
+	});
+
+	$('#home-slider-img').pxSlider({
+		slideWidth: 960,
+		//speed: 600
+	});
+
+	//$('#home-slider').data('pxSlider').goToSlide(3);
+    
+    //slide to first
+	$('a.ext1').click( function(){
+		$('#home-slider').data('pxSlider').goToSlide(0);
+        return false;
+	});
+    //slide to 2
+    $('a.ext2').click( function(){
+		$('#home-slider').data('pxSlider').goToSlide(2);
+        return false;
+	});
+    //slide to last
+	$('a.ext3').click( function(){
+		$('#home-slider').data('pxSlider').goToSlide(  $('#home-slider').data('pxSlider').settings.slidesCount-1 );
+        return false;
+	});
+    //total slides
+	$('a.ext4').click( function(){
+        console.log( 'total: ' + $('#home-slider').data('pxSlider').settings.slidesCount );
+        return false;
+	});
+    //currentSlide
+	$('a.ext5').click( function(){
+        console.log( 'current: ' + $('#home-slider').data('pxSlider').settings.currentSlide );
+        return false;
 	});
 
 });
 </script>
 
+	
 </body>
 </html>

@@ -32,8 +32,8 @@
 				.wrapAll('<div class="px-slider-container"></div>');
 			var wrapper = $element.parent().parent();
 
-			$element.parent().css({ 'width': plugin.settings.slideWidth  });		//set surrounding div width
-			wrapper												//add controls to surrounding div
+			wrapper	
+				.css({ 'width': plugin.settings.slideWidth  })	
 				.prepend('<a href="#" class="px-control" id="px-left">prev</a>')
 				.append('<a href="#" class="px-control" id="px-right">next</a>')
 
