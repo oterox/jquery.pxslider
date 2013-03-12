@@ -1,124 +1,114 @@
-(function($){
-	$.fn.pxslider = function( option ) {
-		
-		var defaults = {  
-			slideWidth: 730,				
+(function($) {
+
+	$.pxSlider = function(element, options) {
+		var defaults = {
+			speed: 500,
+			currentSlide: 0,
+			slideWidth: 960,
+			slidesCount: 0,	
+			slideStart: 0, //TO-DO
+			pagination: true,
+			auto: false,  //TO-DO
+			effect: 'scroll', //TO-DO		
 			onSlideBefore: function() {},
-			onSlideAfter: function() {}
-		};  
+			onSlideAfter: function() {},
+			onSlideLoaded: function() {}  //TO-DO
+		}
 
-		var options = $.extend(defaults, option),
+		var plugin = this;
 
-			currentPosition = 0,			//current position of the slideshow
+		plugin.settings = {}
 
-			slides = $('.pxslide'),
+		var $element = $(element),
+		element = element;
 
-			numberOfSlides = slides.length;		
+		plugin.init = function() {
+			plugin.settings = $.extend({}, defaults, options);
 
-		// Wrap all .slides with #slideInner div
-		slides.wrapAll('<div id="slideInner"></div>')
-				
-		$('#slideInner').css('width', options.slideWidth * numberOfSlides);
+			plugin.settings.slidesCount = $element.children().size();
 
-		$('.slider')
-			.prepend('<a href="#" class="pxcontrol" id="pxleftControl">left</a>')
-			.append('<a href="#" class="pxcontrol" id="pxrightControl">right</a>')
-			.append('<div id="pxthumbs"></div>');
- 
-		slides.each(function(){
-			
-			var i = $(this).index();
-			
-			$('#pxthumbs').append('<div class="pxthumb-box" data-id="'+ i +'"><a href="#" data-id="'+i+'">'+i+'</a></div>');
+			$element
+				.wrapAll('<div class="px-slider-wrapper"></div>')
+				.wrapAll('<div class="px-slider-container"></div>');
+			var wrapper = $element.parent().parent();
 
-		});
+			$element.parent().css({ 'width': plugin.settings.slideWidth  });		//set surrounding div width
+			wrapper												//add controls to surrounding div
+				.prepend('<a href="#" class="px-control" id="px-left">prev</a>')
+				.append('<a href="#" class="px-control" id="px-right">next</a>')
 
-		$('.pxthumb-box a').click( function(e){
-			
-			gotoslide( $(this).data('id') );
-
-			e.preventDefault();
-
-		});
-
-		setNavigation(currentPosition);
-
-		$('.pxcontrol').bind('click', function(){
-
-			if( currentPosition >= 0 && currentPosition < numberOfSlides){
-
-				var newposition = ($(this).attr('id')=='pxrightControl') ? currentPosition+1 : currentPosition-1;
-
-				gotoslide( newposition );
-
-			}
-			
-			return false;
-
-		});
-
-		$(document).keydown(function(e) {
-
-			var code = (e.keyCode ? e.keyCode : e.which);
-
-			if(code == 39 && (numberOfSlides - currentPosition) > 0){
-				
-				gotoslide( currentPosition+1 );
-
-			}else if(code == 37 && currentPosition>0 ){
-							
-				gotoslide( currentPosition-1 );
-
+			if( plugin.settings.pagination ){
+				wrapper.append('<div class="px-thumbs"></div>');
+				$element.children().each(function(){
+					var i = $(this).index();
+					$('.px-thumbs', wrapper ).append('<div class="px-thumb-box" data-id="'+ i +'"><a href="#" data-id="'+i+'">'+i+'</a></div>');
+				});
+				//pager navigation
+				$('.px-thumb-box a',wrapper ).click( function(e){
+					goToSlide( $(this).data('id') );
+					e.preventDefault();
+				});
 			}
 
-		});
+			$element.css({'width': plugin.settings.slideWidth * plugin.settings.slidesCount, 'position':'relative' });
 
-		function gotoslide(position){
+			$element.children().css({'float': 'left','position': 'relative', 'width': plugin.settings.slideWidth });	
 
-			if( position >= 0 && position < numberOfSlides){
-				
-				options.onSlideBefore();
-				
-				currentPosition = position;
+			setNavigation(0);
 
-				$('#slideInner').animate({
+			$('.px-control', wrapper ).bind('click', function(){
+				if( plugin.settings.currentSlide >= 0 && plugin.settings.currentSlide < plugin.settings.slidesCount){
+					var newposition = ($(this).attr('id')=='px-right') ? plugin.settings.currentSlide+1 : plugin.settings.currentSlide-1;
+					goToSlide( newposition );
+				}
+				return false;
+			});
+		}
 
-					'marginLeft' : options.slideWidth*(-currentPosition)
+		plugin.goToSlide = function(index) {           
+			goToSlide(index);
+		}
 
-				}, 500, options.onSlideAfter );
-
-				setNavigation(currentPosition);
-
+		var goToSlide = function( index ){
+			if( index >= 0 && index < plugin.settings.slidesCount){
+				plugin.settings.onSlideBefore(plugin.settings.currentSlide);
+				plugin.settings.currentSlide = index;
+				$element.animate({
+					'marginLeft' : plugin.settings.slideWidth*(-plugin.settings.currentSlide)
+				}, plugin.settings.speed, 'swing', plugin.settings.onSlideAfter(index) );
+				setNavigation(plugin.settings.currentSlide);
 			}
 		}
 
-		// setNavigation: Hides and shows controls depending on currentPosition
-		function setNavigation(position){
-
-			$('#pxleftControl').removeClass('disabled');
-			
-			$('#pxrightControl').removeClass('disabled');
-
-			// Hide left arrow if position is first slide
-			if(position == 0){ 
-
-				$('#pxleftControl').addClass('disabled');
-
+		var setNavigation = function( index ){
+			var wrapper = $element.parent().parent();
+			$('#px-left', wrapper ).removeClass('disabled');
+			$('#px-right', wrapper ).removeClass('disabled');
+			// Hide left arrow if index is first slide
+			if(index == 0){ 
+				$('#px-left', wrapper).addClass('disabled');
 			}
-			
-			// Hide right arrow if position is last slide
-			if(position == numberOfSlides-1){
 
-				$('#pxrightControl').addClass('disabled'); 
-
+			// Hide right arrow if index is last slide
+			if(index == plugin.settings.slidesCount-1){
+				$('#px-right', wrapper).addClass('disabled'); 
 			}
 
 			// pager
-			$('.pxthumb-box a').removeClass('current');
+			$('.px-thumb-box a', wrapper).removeClass('current');
+			$('.px-thumb-box a[data-id='+index+']', wrapper ).addClass('current');
+		}				
 
-			$('.pxthumb-box a[data-id='+position+']').addClass('current');
-		}
+		plugin.init();
+	}
 
+	$.fn.pxSlider = function(options) {
+		return this.each(function() {
+			if (undefined == $(this).data('pxSlider')) {
+				var plugin = new $.pxSlider(this, options);
+				$(this).data('pxSlider', plugin);
+			}
+		});
 	}
 
 })(jQuery);
