@@ -5,11 +5,16 @@
 			speed: 500,
 			currentSlide: 0,
 			slideWidth: 960,
+			slideHeight: 'auto',
 			slidesCount: 0,	
 			slideStart: 0, //TO-DO
 			pagination: true,
 			auto: false,  //TO-DO
 			effect: 'scroll', //TO-DO		
+			circular: false, //TO-DO		
+			prevButton: 'px-left', 		
+			nextButton: 'px-right', 		
+			pager: 'px-thumbs', //TO-DO		
 			onSlideBefore: function() {},
 			onSlideAfter: function() {},
 			onSlideLoaded: function() {}  //TO-DO
@@ -33,9 +38,9 @@
 			var wrapper = $element.parent().parent();
 
 			wrapper	
-				.css({ 'width': plugin.settings.slideWidth  })	
-				.prepend('<a href="#" class="px-control" id="px-left">prev</a>')
-				.append('<a href="#" class="px-control" id="px-right">next</a>')
+				.css({ 'width': plugin.settings.slideWidth, 'height': plugin.settings.slideHeight })	
+				.prepend('<a href="#" class="px-control" id="'+ plugin.settings.prevButton +'">prev</a>')
+				.append('<a href="#" class="px-control" id="'+ plugin.settings.nextButton +'">next</a>')
 
 			if( plugin.settings.pagination ){
 				wrapper.append('<div class="px-thumbs"></div>');
@@ -58,7 +63,7 @@
 
 			$('.px-control', wrapper ).bind('click', function(){
 				if( plugin.settings.currentSlide >= 0 && plugin.settings.currentSlide < plugin.settings.slidesCount){
-					var newposition = ($(this).attr('id')=='px-right') ? plugin.settings.currentSlide+1 : plugin.settings.currentSlide-1;
+					var newposition = ($(this).attr('id')==plugin.settings.nextButton) ? plugin.settings.currentSlide+1 : plugin.settings.currentSlide-1;
 					goToSlide( newposition );
 				}
 				return false;
@@ -82,21 +87,23 @@
 
 		var setNavigation = function( index ){
 			var wrapper = $element.parent().parent();
-			$('#px-left', wrapper ).removeClass('disabled');
-			$('#px-right', wrapper ).removeClass('disabled');
+			$('a.px-control' , wrapper ).removeClass('disabled');
+			
 			// Hide left arrow if index is first slide
 			if(index == 0){ 
-				$('#px-left', wrapper).addClass('disabled');
+				$('#'+ plugin.settings.prevButton , wrapper).addClass('disabled');
 			}
 
 			// Hide right arrow if index is last slide
 			if(index == plugin.settings.slidesCount-1){
-				$('#px-right', wrapper).addClass('disabled'); 
+				$('#'+ plugin.settings.nextButton, wrapper).addClass('disabled'); 
 			}
-
-			// pager
-			$('.px-thumb-box a', wrapper).removeClass('current');
-			$('.px-thumb-box a[data-id='+index+']', wrapper ).addClass('current');
+			
+			if( plugin.settings.pagination ){
+				// pager
+				$('.px-thumb-box a', wrapper).removeClass('current');
+				$('.px-thumb-box a[data-id='+index+']', wrapper ).addClass('current');
+			}
 		}				
 
 		plugin.init();

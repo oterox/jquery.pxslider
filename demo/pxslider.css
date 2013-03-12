@@ -1,9 +1,14 @@
 		.clear { clear: both; }
 		body { margin: 100px auto; width: 960px; background-color: #EFEFEF; }
 		* { border: 0; padding: 0; margin:0; list-style: none; }
-
+		h2 { margin: 30px 10px; font-family: georgia, tahoma; }
 		.px-slider-wrapper {
 			position: relative;
+			box-shadow: 0px 0px 21px 1px #404040;
+			-moz-box-shadow: 0px 0px 21px 1px #404040;
+			-webkit-box-shadow: 0px 0px 21px 1px #404040;
+			clear: both;
+			margin-bottom: 50px;
 		}
 
 		.px-slider-container {
@@ -18,19 +23,22 @@
 		* Navigation
 		*/
 		.px-control {
-			display:block;
+			
 			position:absolute;
 			z-index: 200;
-			background: #FFF;		
-		}
-		#px-left, 
-		#px-right { top: 0; height: 64px; width: 39px; display: inline-block !important; text-indent: -9999px; }
-		#px-left { left: -60px; background: url(images/controls-slider.png) no-repeat 0 0; }
-		#px-right { right: -60px; background: url(images/controls-slider.png ) no-repeat -39px 0px; }
+			background: #FFF;
+			top: 0; height: 64px; width: 39px; display: inline-block !important;  }
+
+		#px-left { left: -60px; background: url(images/controls-slider.png) no-repeat 0 0; text-indent: -9999px; }
+		#px-right { right: -60px; background: url(images/controls-slider.png ) no-repeat -39px 0px; text-indent: -9999px; }
 		#px-left.disabled { background-position: 0 -65px; }
 		#px-right.disabled { background-position: -39px -65px; }
 		#px-left:hover { background-position: 0 -65px; }
 		#px-right:hover { background-position: -39px -65px; }
+
+		/* custom buttons */
+		#pxprev { left: -60px; }
+		#pxnext { right: -60px; }
 		
 
 		/**

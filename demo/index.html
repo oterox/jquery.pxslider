@@ -12,8 +12,7 @@
 </head>
 
 <body>
-<a href="" class="ext">go to 2</a>
-	<p>Convert a DIV with only images into a slider</p>
+	<h2>SAMPLE 1 - Convert a DIV with only images into a slider</h2>
 	<div id="home-slider">
 		<div class="pxslide"><img src="images/pxslide1.jpg" /></div>
 		<div class="pxslide"><img src="images/pxslide2.jpg" /></div>	
@@ -26,10 +25,20 @@
     <a href="" class="ext1">go to first slide</a><br>
     <a href="" class="ext2">go to slide 2</a><br>
     <a href="" class="ext3">go to last slide</a><br>
-    <a href="" class="ext4">total</a><br>
-    <a href="" class="ext5">current</a><br>
-
-	<p>Convert a UL into a slider</p>
+    <a href="" class="ext4">total slides: </a><span></span><br>
+    <a href="" class="ext5">current index: </a><span></span><br>
+	
+	<p>Sample code:</p>
+<pre>
+&lt;div id="home-slider"&gt;
+	&lt;div class="pxslide"&gt;&lt;img src="images/pxslide1.jpg" /&gt;&lt;/div&gt;
+	&lt;div class="pxslide"&gt;&lt;img src="images/pxslide2.jpg" /&gt;&lt;/div&gt;	
+	&lt;div class="pxslide"&gt;&lt;img src="images/pxslide3.jpg" /&gt;&lt;/div&gt;
+	&lt;div class="pxslide"&gt;&lt;img src="images/pxslide4.jpg" /&gt;&lt;/div&gt;
+	&lt;div class="pxslide"&gt;&lt;img src="images/pxslide5.jpg" /&gt;&lt;/div&gt;
+&lt;/div&gt;	
+</pre>
+	<h2>SAMPLE 2 - Convert a UL into a slider ( no pagination )</h2>
 	<ul id="home-slider-ul">
 		<div class="pxslide"><img src="images/pxslide1.jpg" /></div>
 		<div class="pxslide"><img src="images/pxslide2.jpg" /></div>
@@ -38,9 +47,20 @@
 		<div class="pxslide"><img src="images/pxslide4.jpg" /></div>
 		<div class="pxslide"><img src="images/pxslide5.jpg" /></div>
 	</ul>
+	
+	<p>Sample code:</p>
+<pre>
+&lt;ul id="home-slider-ul"&gt;
+	&lt;div class="pxslide"&gt;&lt;img src="images/pxslide1.jpg" /&gt;&lt;/div&gt;
+	&lt;div class="pxslide"&gt;&lt;img src="images/pxslide2.jpg" /&gt;&lt;/div&gt;
+	&lt;div class="pxslide"&gt;&lt;h2&gt;THis is text content&lt;/h2&gt;&lt;/div&gt;
+	&lt;div class="pxslide"&gt;&lt;img src="images/pxslide3.jpg" /&gt;&lt;/div&gt;
+	&lt;div class="pxslide"&gt;&lt;img src="images/pxslide4.jpg" /&gt;&lt;/div&gt;
+	&lt;div class="pxslide"&gt;&lt;img src="images/pxslide5.jpg" /&gt;&lt;/div&gt;
+&lt;/ul&gt;
+</pre>
 
-	<p>slider from images only</p>
-
+	<h2>SAMPLE 3 - slider from images only (custom prev/next styles)</h2>
 	<div id="home-slider-img">
 		<img src="images/pxslide1.jpg" />
 		<img src="images/pxslide2.jpg" />
@@ -49,20 +69,22 @@
 		<img src="images/pxslide5.jpg" />
 	</div>
 
-	<pre>
-	&lt;div id="home-slider-img"&gt;
-		&lt;img src="images/pxslide1.jpg" /&gt;
-		&lt;img src="images/pxslide2.jpg" /&gt;
-		&lt;img src="images/pxslide3.jpg" /&gt;
-	&lt;/div&gt;
-	</pre>
+	<p>Sample code:</p>
+<pre>
+&lt;div id="home-slider-img"&gt;
+	&lt;img src="images/pxslide1.jpg" /&gt;
+	&lt;img src="images/pxslide2.jpg" /&gt;
+	&lt;img src="images/pxslide3.jpg" /&gt;
+&lt;/div&gt;
+</pre>
 
 <script type="text/javascript">
 $(document).ready(function(){
     
 
 	$('#home-slider').pxSlider({
-	    'slideWidth': 960,
+	    slideWidth: 700,
+	    slideHeight: 218,
 		onSlideBefore: function( currentIndex ){
 			$('p.debug1 span').html('starting animation... index before animation: ' + currentIndex );
 		},
@@ -72,13 +94,17 @@ $(document).ready(function(){
 	});
 
 	$('#home-slider-ul').pxSlider({
-		slideWidth: 660,
+		slideWidth: 700,
+		slideHeight: 218,
 		pagination: false
 		//speed: 600
 	});
 
 	$('#home-slider-img').pxSlider({
-		slideWidth: 960,
+		slideWidth: 700,
+		slideHeight: 218,
+		prevButton: 'pxprev', 
+		nextButton: 'pxnext'
 		//speed: 600
 	});
 
@@ -101,12 +127,12 @@ $(document).ready(function(){
 	});
     //total slides
 	$('a.ext4').click( function(){
-        console.log( 'total: ' + $('#home-slider').data('pxSlider').settings.slidesCount );
+        $(this).next().html( $('#home-slider').data('pxSlider').settings.slidesCount );
         return false;
 	});
     //currentSlide
 	$('a.ext5').click( function(){
-        console.log( 'current: ' + $('#home-slider').data('pxSlider').settings.currentSlide );
+       $(this).next().html( $('#home-slider').data('pxSlider').settings.currentSlide );
         return false;
 	});
 
