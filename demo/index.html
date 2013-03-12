@@ -38,7 +38,7 @@
 	&lt;div class="pxslide"&gt;&lt;img src="images/pxslide5.jpg" /&gt;&lt;/div&gt;
 &lt;/div&gt;	
 </pre>
-	<h2>SAMPLE 2 - Convert a UL into a slider ( no pagination )</h2>
+	<h2>SAMPLE 2 - Convert a UL into a slider ( no pagination, circular and auto-scroll )</h2>
 	<ul id="home-slider-ul">
 		<div class="pxslide"><img src="images/pxslide1.jpg" /></div>
 		<div class="pxslide"><img src="images/pxslide2.jpg" /></div>
@@ -97,14 +97,14 @@ $(document).ready(function(){
 		slideWidth: 700,
 		slideHeight: 218,
 		pagination: false,
-		circular: true
-		//speed: 600
+		circular: true,
+		auto: true,
+		autoTimer: 6000  // 6 seconds
 	});
 
 	$('#home-slider-img').pxSlider({
 		slideWidth: 700,
 		slideHeight: 218,
-		circular: true,
 		prevButton: 'pxprev', 
 		nextButton: 'pxnext'
 		//speed: 600

@@ -9,7 +9,8 @@
 			slidesCount: 0,	
 			slideStart: 0, //TO-DO
 			pagination: true,
-			auto: false,  //TO-DO
+			auto: false,  
+			autoTimer: 5000,  
 			effect: 'scroll', //TO-DO		
 			circular: false, 
 			prevButton: 'px-left', 		
@@ -60,6 +61,13 @@
 			$element.children().css({'float': 'left','position': 'relative', 'width': plugin.settings.slideWidth });	
 
 			setNavigation(0);
+			
+			if( plugin.settings.auto ){ 
+				//Assign a timer, so it will run periodically
+				slideShowInterval = setInterval(function(){
+					$('#' + plugin.settings.nextButton, wrapper ).trigger('click');
+				}, plugin.settings.autoTimer );
+			}
 
 			$('.px-control', wrapper ).bind('click', function(){
 				if( plugin.settings.circular ){
@@ -82,6 +90,12 @@
 				}
 				return false;
 			});
+		}
+
+		var sliderAuto = function(){
+			var wrapper = $element.parent().parent();
+			//$('.px-control #' + plugin.settings.nextButton, wrapper ).trigger('click');
+			alert('99');
 		}
 
 		plugin.goToSlide = function(index) {           
