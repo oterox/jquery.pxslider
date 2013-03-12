@@ -62,9 +62,23 @@
 			setNavigation(0);
 
 			$('.px-control', wrapper ).bind('click', function(){
-				if( plugin.settings.currentSlide >= 0 && plugin.settings.currentSlide < plugin.settings.slidesCount){
-					var newposition = ($(this).attr('id')==plugin.settings.nextButton) ? plugin.settings.currentSlide+1 : plugin.settings.currentSlide-1;
-					goToSlide( newposition );
+				if( plugin.settings.circular ){
+
+					var direction = ($(this).attr('id') == plugin.settings.nextButton )?'next':'prev';
+						
+					if( plugin.settings.currentSlide == 0 && direction == 'prev'){
+						goToSlide( plugin.settings.slidesCount-1 );
+					}else if( plugin.settings.currentSlide == plugin.settings.slidesCount-1  && direction == 'next'){
+						goToSlide( 0 );
+					}else{
+						var newposition = ($(this).attr('id')==plugin.settings.nextButton) ? plugin.settings.currentSlide+1 : plugin.settings.currentSlide-1;
+						goToSlide( newposition );
+					}
+				} else {
+					if( plugin.settings.currentSlide >= 0 && plugin.settings.currentSlide < plugin.settings.slidesCount){
+						var newposition = ($(this).attr('id')==plugin.settings.nextButton) ? plugin.settings.currentSlide+1 : plugin.settings.currentSlide-1;
+						goToSlide( newposition );
+					}
 				}
 				return false;
 			});
@@ -89,14 +103,14 @@
 			var wrapper = $element.parent().parent();
 			$('a.px-control' , wrapper ).removeClass('disabled');
 			
-			// Hide left arrow if index is first slide
-			if(index == 0){ 
-				$('#'+ plugin.settings.prevButton , wrapper).addClass('disabled');
-			}
-
-			// Hide right arrow if index is last slide
-			if(index == plugin.settings.slidesCount-1){
-				$('#'+ plugin.settings.nextButton, wrapper).addClass('disabled'); 
+			if( !plugin.settings.circular ){ //we don't want to hide prev/next if we want circular slider
+				
+				if(index == 0){ // Hide left arrow if index is first slide
+					$('#'+ plugin.settings.prevButton , wrapper).addClass('disabled');
+				}
+				if(index == plugin.settings.slidesCount-1){ // Hide right arrow if index is last slide
+					$('#'+ plugin.settings.nextButton, wrapper).addClass('disabled'); 
+				}
 			}
 			
 			if( plugin.settings.pagination ){

@@ -27,7 +27,8 @@
 			position:absolute;
 			z-index: 200;
 			background: #FFF;
-			top: 0; height: 64px; width: 39px; display: inline-block !important;  }
+			top: 60px; height: 64px; width: 39px; display: inline-block !important;  
+		}
 
 		#px-left { left: -60px; background: url(images/controls-slider.png) no-repeat 0 0; text-indent: -9999px; }
 		#px-right { right: -60px; background: url(images/controls-slider.png ) no-repeat -39px 0px; text-indent: -9999px; }
