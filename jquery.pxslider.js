@@ -1,3 +1,12 @@
+/*
+ * jQuery pxSlider v1.2
+ * http://www.thepixellary.com/
+ *
+ * Copyright 2013 ThePixellary
+ * Free to use under the GPLv2 license.
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ */
 (function($) {
 
 	$.pxSlider = function(element, options) {
