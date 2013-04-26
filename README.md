@@ -5,7 +5,7 @@ jquery really simple slideshow for learning porpouses
 
 For complete documentation visit:
 
-[http://pixellarydev.eu](http://pixellarydev.eu)
+[http://demos.pixellarylabs.com/pxslider/demo/](http://demos.pixellarylabs.com/pxslider/demo/)
 
 Written by: Javier Otero 
 
