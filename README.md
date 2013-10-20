@@ -7,6 +7,10 @@ For a demo visit:
 
 [http://demos.pixellarylabs.com/pxslider/demo/](http://demos.pixellarylabs.com/pxslider/demo/)
 
+Sites using it:
+
+[http://www.vericant.com](http://www.vericant.com)
+
 Written by: Javier Otero 
 
 ##Main Features
