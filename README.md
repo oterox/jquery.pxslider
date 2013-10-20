@@ -3,7 +3,7 @@ jquery.pxslider
 
 jquery really simple slideshow for learning porpouses
 
-For complete documentation visit:
+For a demo visit:
 
 [http://demos.pixellarylabs.com/pxslider/demo/](http://demos.pixellarylabs.com/pxslider/demo/)
 
