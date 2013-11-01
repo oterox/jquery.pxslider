@@ -1,5 +1,6 @@
 /*
  * jQuery pxSlider v1.2
+ * Author: Javier Otero
  * http://www.thepixellary.com/
  *
  * Copyright 2013 ThePixellary
