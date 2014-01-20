@@ -1,9 +1,9 @@
 /*
  * jQuery pxSlider v1.2
  * Author: Javier Otero
- * http://www.thepixellary.com/
+ * http://www.oterox.com/
  *
- * Copyright 2013 ThePixellary
+ * Copyright 2013 Javier Otero
  * Free to use under the GPLv2 license.
  * http://www.gnu.org/licenses/gpl-2.0.html
  *
