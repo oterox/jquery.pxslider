@@ -5,7 +5,7 @@ jquery really simple slideshow for learning porpouses
 
 For a demo visit:
 
-[http://demos.pixellarylabs.com/pxslider/demo/](http://demos.pixellarylabs.com/pxslider/demo/)
+[http://demos.oterox.com/pxslider/](http://demos.oterox.com/pxslider/)
 
 Sites using it:
 
