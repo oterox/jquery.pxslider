@@ -5,11 +5,7 @@ jquery really simple slideshow for learning porpouses
 
 For a demo visit:
 
-[http://demos.oterox.com/pxslider/](http://demos.oterox.com/pxslider/)
-
-Sites using it:
-
-[http://www.vericant.com](http://www.vericant.com)
+[http://oterox.synology.me/demos/jquery.pxslider/demo/](demo)
 
 Written by: Javier Otero 
 
