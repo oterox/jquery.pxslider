@@ -1,11 +1,11 @@
 jquery.pxslider
 ===============
-
-jquery really simple slideshow for learning porpouses
+2012
+jquery really simple slideshow for learning porpouses. No responsive
 
 For a demo visit:
 
-[demo](http://oterox.synology.me/demos/jquery.pxslider/demo/)
+[demo](http://demos.grillcode.com/jquery.pxslider/demo/)
 
 Written by: Javier Otero 
 
